@@ -1,0 +1,24 @@
+# 原始发布包（冗余，不上传）
+*.zip
+
+# Vivado 编译产物
+*.bin
+*.bit
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.jou
+*.log
+*.backup*
+pcileech_tbx4_100t/
+pcileech_enigma_x1/
+pcileech_squirrel/
+pcileech_m2/
+pcileech_captain_75T/
+pcileech_immortal_75T/
+
+# Windows
+Thumbs.db
+Desktop.ini

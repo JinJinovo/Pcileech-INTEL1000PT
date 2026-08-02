@@ -1,0 +1,53 @@
+;
+; Custom INF for PCILeech FPGA emulating Intel PRO/1000 PT Desktop Adapter
+; PCI\VEN_8086&DEV_107D  ->  display name "Intel(R) PRO/1000 PT Desktop Adapter"
+; Uses the stock Intel e1e6032.sys driver (copy it next to this INF).
+;
+[Version]
+Signature   = "$Windows NT$"
+Class       = Net
+ClassGuid   = {4d36e972-e325-11ce-bfc1-08002be10318}
+Provider    = %ProviderName%
+DriverVer   = 06/06/2025,13.5.0.0
+CatalogFile = e1e6032.cat
+
+[Manufacturer]
+%ProviderName% = Intel,NTamd64
+
+[Intel.NTamd64]
+%E1000C.DeviceDesc.103% = E1000C.ndi, PCI\VEN_8086&DEV_107D
+
+[E1000C.ndi]
+CopyFiles = E1000C.SysFiles
+AddReg = E1000C.AddReg
+Characteristics = 0x84
+
+[E1000C.ndi.Services]
+AddService = e1e6032, 0x00000002, E1000C.ServiceInstall
+
+[E1000C.ServiceInstall]
+DisplayName   = %E1000C.SVCDESC%
+ServiceType   = 1
+StartType     = 3
+ErrorControl  = 1
+ServiceBinary = %12%\e1e6032.sys
+LoadOrderGroup = NDIS
+
+[E1000C.SysFiles]
+e1e6032.sys
+
+[E1000C.AddReg]
+HKR, Ndi, Service, 0, "e1e6032"
+HKR, Ndi\Interfaces, UpperRange, 0, "ndis5"
+HKR, Ndi\Interfaces, LowerRange, 0, "ethernet"
+HKR, Ndi\Interfaces, FilterMediaTypes, 0, "ethernet"
+HKR, Ndi\Interfaces, DefUpper, 0, "ndis5"
+HKR, Ndi\Interfaces, DefLower, 0, "ethernet"
+
+[DestinationDirs]
+E1000C.SysFiles = 12
+
+[Strings]
+ProviderName = "Intel"
+E1000C.DeviceDesc.103 = "Intel(R) PRO/1000 PT Desktop Adapter"
+E1000C.SVCDESC = "Intel(R) PRO/1000 PT Network Connection Driver"
