@@ -4,6 +4,7 @@ PCILeech FPGA firmware that emulates an **Intel PRO/1000 PT Desktop Adapter
 (Intel 82572EI)**. VID `0x8086` / DID `0x107D`, Ethernet controller class code `0x020000`.
 
 ---
+Discord: @JinJinovo
 
 # English
 
